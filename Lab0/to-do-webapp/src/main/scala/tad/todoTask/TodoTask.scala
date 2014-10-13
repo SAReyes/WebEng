@@ -9,7 +9,7 @@ case class TodoTask(var name : String
 
   def this() = this(null,null,null,MEDIUM)
 
-  def hasProject = project != null || project != "-"
+  def hasProject = project != null && project != "-"
 
-  def hasContext = context != null || context != "-"
+  def hasContext = context != null && context != "-"
 }
