@@ -13,7 +13,7 @@ import org.json4s.jackson.Serialization.{read => readJson, write => writeJson}
 
 object AddTodoTask{
   
-  val DEFAULT_FILE_NAME = "task_list.json"
+  val DEFAULT_FILE_NAME = "todo-tasklist.json"
   
   /**
    * This function fills in a task based on user input.
