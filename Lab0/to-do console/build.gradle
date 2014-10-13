@@ -1,0 +1,32 @@
+apply plugin: 'scala'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile 'org.scala-lang:scala-library:2.11.2'
+	compile 'org.json4s:json4s-ext_2.11:3.2.10'
+	compile 'org.json4s:json4s-jackson_2.11:3.2.10'
+}
+
+task addTask(type: JavaExec, dependsOn: classes) {
+	if ('addTask' in gradle.startParameter.taskNames &&
+	    gradle.startParameter.logLevel < LogLevel.QUIET) {
+        println "Note: The task 'addTask' works best in quiet mode (gradle -q addTask)"
+    }
+    group 			= 'Formats JSON'
+    description 	= 'Add a task to a to-do list'
+    main 			= 'todo.console.AddTodoTask'
+	classpath 		= sourceSets.main.runtimeClasspath
+	standardInput	= System.in
+} 
+
+task listTasks(type: JavaExec) {
+    group 			= 'Formats JSON'
+    description 	= 'List the contents of a to-do'
+    main 			= 'todo.console.ListTodoTasks'
+	classpath 		= sourceSets.main.runtimeClasspath
+}
+

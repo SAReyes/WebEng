@@ -1,0 +1,29 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+ 
+    dependencies {
+        classpath (group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.+')
+    }
+}
+
+apply plugin: 'war'
+apply plugin: 'jettyEclipse'
+apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'scala'
+
+
+repositories {
+   mavenCentral()                                               
+}
+
+dependencies {
+    providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+    compile 'org.scala-lang:scala-library:2.11.2'
+    compile 'org.json4s:json4s-ext_2.11:3.2.10'
+    compile 'org.json4s:json4s-jackson_2.11:3.2.10'
+}
+
+ 
