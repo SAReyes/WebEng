@@ -1,0 +1,71 @@
+<div class="myPanel container" ng-controller="BodyCtrl">
+    <div class="jumbotron">
+        <h2 class="center-text">To-do Tasks</h2>
+
+            <!-- New Task form -->
+        <div class="form-group" style="margin-top: 30px">
+            <div class="input-group">
+                <span class="input-group-addon">New Task</span>
+                <input ng-model="taskName" type="text" placeholder="Task Name" class="form-control">
+
+                <span class="input-group-addon"></span>
+                <input ng-model="taskContext" type="text" placeholder="Context" class="form-control">
+
+                <span class="input-group-addon"></span>
+                <input ng-model="taskProject" type="text" placeholder="Project" class="form-control">
+
+                <span class="input-group-addon"></span>
+                <select ng-model="taskPriority.priority" class="form-control" required="required"
+                ng-options="option.value as option.name for option in priorityOptions">
+                </select>
+
+                <span class="input-group-btn">
+                    <input type="button" class="btn" value="Submit" ng-click="saveNewTask()">
+                </span>
+            </div>
+        </div>
+
+            <!-- search filter -->
+        <div id="to-do-tasks">
+            <div class="input-group">
+                <span class="input-group-addon">Search</span>
+                <input ng-model="searchText[columnFilter]" type="text" placeholder="Search a Task" class="form-control">
+                <span class="input-group-addon">@Html("@Column")</span>
+                <select ng-model="columnFilter" class="form-control button-color" required="required"
+                ng-options="option.value as option.name for option in columnFilterOptions">
+                </select>
+                <span class="input-group-addon">Priority</span>
+                <select ng-model="priorityFilter" class="form-control button-color" required="required"
+                ng-options="option.value as option.name for option in priorityFilterOptions">
+                </select>
+            </div>
+        </div>
+
+            <!-- table -->
+        <table class="table no-bot-margin table-hover">
+            <tbody>
+                <tr>
+                    <td><h3 class="center-text">Task</h3></td>
+                    <td><h3 class="center-text">Context</h3></td>
+                    <td><h3 class="center-text">Project</h3></td>
+                    <td><h3 class="center-text">Priority</h3></td>
+                    <td style="width: 60px;">
+                        <h3><span class="center-text glyphicon glyphicon-remove"></span></h3>
+                    </td>
+                </tr>
+                <tr ng-repeat="task in tasks | filter:searchText">
+                    <td class="center-text">{{task.name}}</td>
+                    <td class="center-text">{{task.context}}</td>
+                    <td class="center-text">{{task.project}}</td>
+                    <td class="center-text">{{task.priority}}</td>
+                    <td style="width: 10px;">
+                        <button class="btn btn-danger" ng-click="removeTask(task)">
+                            <span class="center-text glyphicon glyphicon-remove"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
