@@ -53,17 +53,6 @@ object Application extends Controller {
       }
   }
 
-  //DELETE  /todoList/delete
-  def removeTask() = Action(BodyParsers.parse.json) {
-    request =>
-      myMap(request.body.validate[TodoTask]){
-        case task =>
-          tasks.removeTask(task)
-          tasks.save()
-          Ok
-      }
-  }
-
   //DELETE  /todoList/delete/:id
   def removeTaskById(id: Long) = Action {
     request =>

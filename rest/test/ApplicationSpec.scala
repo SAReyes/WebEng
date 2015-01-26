@@ -95,30 +95,6 @@ class ApplicationSpec extends Specification {
       status(response) must_== BAD_REQUEST
     }
 
-    "[DELETE:/todoList/delete] send 200 when deleted" in new WithApplication {
-      /* Adds a new task to be removed */
-      val fakeTask = new TodoTask
-      fakeTask.name = ""
-      fakeTask.context = ""
-      fakeTask.project = ""
-
-      var fakeRequestPost = FakeRequest(POST, "/todoList/post")
-        .withHeaders((CONTENT_TYPE, "application/json"))
-        .withJsonBody(Json.toJson(fakeTask))
-
-      val responsePost = route(fakeRequestPost).get
-
-      val task = contentAsJson(responsePost).as[TodoTask]
-
-      var fakeRequestDelete = FakeRequest(DELETE, "/todoList/delete")
-        .withHeaders((CONTENT_TYPE, "application/json"))
-        .withJsonBody(Json.toJson(fakeTask))
-
-      val responseDelete = route(fakeRequestDelete).get
-
-      status(responseDelete) must_==  OK
-    }
-
     "[DELETE:/todoList/delete/:id] send 200 when deleted" in new WithApplication {
       /* Adds a new task to be removed */
       val fakeTask = new TodoTask
