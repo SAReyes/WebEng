@@ -36,8 +36,7 @@ myapp.controller('BodyCtrl', function ($scope) {
     var ws = new WebSocket(ws_uri);
 
     ws.onopen = function () {
-        ws.send(JSON.stringify({op: "get_json", task: null}))
-        ws.send(JSON.stringify({op: "disconnect"}));
+        ws.send(JSON.stringify({op: "get_json"}));
     };
 
     ws.onmessage = function (e) {
